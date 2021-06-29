@@ -50,7 +50,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* flex: 1 1 100%; */
 }
 
 .background > * {
@@ -201,6 +200,7 @@ button {
 
 .result > h3 {
   color: white;
+  text-align: left;
 }
 
 .result-total {
@@ -253,7 +253,7 @@ button {
   }
 
   .background-padding {
-    padding: 0 2.5rem 2rem 25% !important;
+    padding: 0 1.5rem 0rem 25% !important;
   }
 
   .calculator {
@@ -267,14 +267,13 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding-top: 2rem;
   }
 
   .planetoid {
     width: 220px;
     height: 203.64px;
-    left: -28.08px;
+    left: -29.08px;
     bottom: -68px;
     border-radius: 10rem;
 
