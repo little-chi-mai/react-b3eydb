@@ -18,17 +18,18 @@ export default function CalculatorForm() {
   let [taxDetails, setTaxDetails] = useState(TaxFormula['fy21']);
   let [totalTax, setTotalTax] = useState(0);
   // state of showing Form screen
-  let [isFormOn, setIsFromOn] = useState(true);
 
   function breakdown() {
-    return taxDetails.map((bracket, index) => (
-      <TaxBracket
-        from={bracket.from}
-        to={bracket.to}
-        tax={bracket.tax}
-        key={index}
-      />
-    ));
+    if (taxDetails) {
+      return taxDetails.map((bracket, index) => (
+        <TaxBracket
+          from={bracket.from}
+          to={bracket.to}
+          tax={bracket.tax}
+          key={index}
+        />
+      ));
+    }
   }
 
   function _onChangeCountry(value) {
@@ -66,8 +67,8 @@ export default function CalculatorForm() {
     setTotalTax(countTotalTax(taxObj));
   }, [country, year, income]);
 
-  if (isFormOn) {
-    return (
+  return (
+    <div>
       <div className="form">
         <div className="background background-padding">
           <h1>Tax-o-tron</h1>
@@ -89,29 +90,10 @@ export default function CalculatorForm() {
               income={income}
               disabled={false}
             />
-
-            <SubmitButton text="Calculate" />
           </form>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="result">
-        <div className="calculator">
-          <h2>Your tax results</h2>
-          <FormContent
-            _onChangeCountry={_onChangeCountry}
-            _onChangeYear={_onChangeYear}
-            _onChangeIncome={_onChangeIncome}
-            country={country}
-            year={year}
-            income={income}
-            disabled={true}
-          />
-          <button onClick={redirect}>Go back to previous screen</button>
-        </div>
-        <div className="background">
+        <div className="result">
+          {/* <div className="result-background"> */}
           <div className="planetoid" />
           <div className="moon" />
           <h3>Your estimated tax is:</h3>
@@ -119,8 +101,9 @@ export default function CalculatorForm() {
           <h3>Breakdown</h3>
 
           {breakdown()}
+          {/* </div> */}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
