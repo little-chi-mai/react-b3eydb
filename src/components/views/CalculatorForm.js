@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import InfoBox from '../InfoBox';
 import FormContent from '../FormContent';
 import TaxBracket from '../TaxBracket';
-import SubmitButton from '../SubmitButton';
+
 import TaxFormula from '../../helpers/TaxFormula';
 import TaxBrackets from '../../helpers/TaxBrackets';
 import currencyFormatter from '../../helpers/CurrencyFormatter';
@@ -43,15 +43,6 @@ export default function CalculatorForm() {
     setIncome(value);
   }
 
-  function _onSubmit(e) {
-    e.preventDefault();
-    setIsFromOn(false);
-  }
-
-  function redirect() {
-    setIsFromOn(true);
-  }
-
   function countTotalTax(taxObj) {
     let total = 0;
     taxObj.forEach(bracket => {
@@ -77,20 +68,18 @@ export default function CalculatorForm() {
           <div className="moon" />
         </div>
         <div className="calculator">
-          <form onSubmit={_onSubmit}>
-            <h2>Calculate your tax</h2>
-            <InfoBox text="Fields marked with * are mandatory" />
+          <h2>Calculate your tax</h2>
+          <InfoBox text="Fields marked with * are mandatory" />
 
-            <FormContent
-              _onChangeCountry={_onChangeCountry}
-              _onChangeYear={_onChangeYear}
-              _onChangeIncome={_onChangeIncome}
-              country={country}
-              year={year}
-              income={income}
-              disabled={false}
-            />
-          </form>
+          <FormContent
+            _onChangeCountry={_onChangeCountry}
+            _onChangeYear={_onChangeYear}
+            _onChangeIncome={_onChangeIncome}
+            country={country}
+            year={year}
+            income={income}
+            disabled={false}
+          />
         </div>
         <div className="result">
           {/* <div className="result-background"> */}
